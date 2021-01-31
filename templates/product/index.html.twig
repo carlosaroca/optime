@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+   <h1 class="h3 mb-0 text-gray-800">Productos | <small>{{ pagination.getTotalItemCount}} Productos registrados</small></h1>
+   <a href="/product/create" class="d-none d-sm-inline-block btn btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Crear producto</a>
+</div>
+{% endblock %}
+{% block body %}
+<div class="example-wrapper">
+
+    <div class="card text-left mb-3">
+        <div class="card-body">
+        <form action="/product/search" method="GET">
+            <div class="input-group mb-3">
+                <input name="code" id="code" type="text" class="form-control" placeholder="Introduce un código de producto" >
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar por código</button>
+    </div>
+                </div>
+            </div>
+        
+        </form>
+        </div>
+
+   <div class="card text-left">
+      <div class="card-body">
+         <p class="card-text">
+            {% for message in app.flashes('success') %}
+         <div class="alert alert-success">
+            {{ message }}
+         </div>
+         {% endfor %}
+
+        {% if pagination|length > 0 %}
+         <table class="table table-hover">
+            <thead>
+               <tr>
+                  <th scope="col">Código</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Marca</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Categoría</th>
+                  <th scope="col">Acciones</th>
+               </tr>
+            </thead>
+            <tbody>
+               {% for product in pagination %}
+               <tr>
+                  <th>{{ product.code }}</th>
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.description }}</td>
+                  <td>{{ product.brand }}</td>
+                  <td>{{ product.price }}</td>
+                  <td>{{ product.category.name }}</td>
+                  <td>
+                     <a href="/product/edit/{{product.id}}" class="btn btn-sm btn-circle btn-info ml-2"><i class="fas fa-edit"></i></a>
+                    <button type="button" class="btn btn-sm btn-circle btn-danger ml-2" data-toggle="popover" title="¿De verdad deseas eliminar este producto?" data-html="true" data-content="<a href='/product/delete/{{product.id}}' class='btn btn-sm btn-danger ml-2'>Si, eliminar</a>"><i class="fas fa-trash"></i></button> 
+                  </td>
+               </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+         {% else %}
+         <div class="text-center">
+            <h3>No se han encontrado productos, realiza una nueva búsqueda o regresa al listado general</h3>
+            <a href="/product" class="btn btn-primary btn-lg">Regresar al listado principal</a>
+         </div>
+         {% endif %}
+         </p>
+      </div>
+   </div>
+</div>
+<div class="navigation">
+   {{ knp_pagination_render(pagination) }}
+</div>
+{% endblock %}

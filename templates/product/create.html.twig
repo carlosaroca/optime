@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+       <h1 class="h3 mb-0 text-gray-800">Creando nueva categoría</h1>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    
+
+    <div class="row">
+        <div class="col-sm-8 offset-md-2">
+
+            <div class="card text-left">
+      <div class="card-body">
+       
+        {{ form_start(form) }}
+
+            <div class="row">
+    
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">{{ form_label(form.code, 'Código del producto') }}</label>
+                        {{ form_widget(form.code, {'attr': {'class': 'form-control', 'placeholder' : 'Ingresa el código del producto'}}) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">{{ form_label(form.name, 'Nombre del producto') }}</label>
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder' : 'Ingresa el nombre del producto'}}) }}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">{{ form_label(form.description, 'Descripción del producto') }}</label>
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder' : 'Ingresa la descripción del producto'}}) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">{{ form_label(form.price, 'Precio del producto') }}</label>
+                        {{ form_widget(form.price, {'attr': {'class': 'form-control', 'placeholder' : 'Ingresa Precio del producto'}}) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">{{ form_label(form.brand, 'Marca del producto') }}</label>
+                        {{ form_widget(form.brand, {'attr': {'class': 'form-control', 'placeholder' : 'Ingresa la marca del producto'}}) }}
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">{{ form_label(form.category, 'Categoría del producto') }}</label>
+                        {{ form_widget(form.category, {'attr': {'class': 'form-control', 'placeholder' : 'Ingresa la marca del producto'}}) }}
+                    </div>
+                </div>
+
+            </div>
+        {{ form_end(form) }}
+        
+      </div>
+    </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
